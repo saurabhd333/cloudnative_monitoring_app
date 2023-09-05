@@ -9,6 +9,8 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install the required python packages
+# Added this line because the python image we used has no gcc so it gave error while installing "psutil" package
+RUN apt-get update -y && apt-get install -y gcc
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the application code to working directory
